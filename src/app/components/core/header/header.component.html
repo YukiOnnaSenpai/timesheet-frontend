@@ -1,0 +1,24 @@
+<div class="header">
+    <div class="banner"></div>
+    <div class="grid-container">
+        <div class="grid-item-span-rows">
+            <a href="https://www.vegait.rs/">
+                <img src="assets/img/logo.png" alt="VegaIT logo">
+            </a>
+        </div>
+        <div>
+            <ul class="display-inline">
+                <li> User </li>
+                <li> Logout</li>
+            </ul>
+        </div>
+        <div>
+            <!-- pipe the names async from service -->
+            <ul>
+                <li class="card" *ngFor="let cardName of cardNames">
+                    <a routerLink="{{cardName.link}}" routerLinkActive="active">{{ cardName.name }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

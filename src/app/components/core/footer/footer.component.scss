@@ -1,0 +1,35 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    right:0px;
+    left:0px;
+    width: 99%;
+    height: 30px;
+    margin-top: 20px;
+    border-top: 1px solid #fff;
+    color: #fff;
+    font-size: 11px;
+    background: #979696;
+    ul {
+        list-style-type: none;
+		li {
+			float: left;
+			margin-right: 10px;
+			a {
+                color: white;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+			&.last {
+				margin-right: 0;
+			}
+		}
+    }
+    
+    .right {
+        float: right;
+        padding: 0;
+        margin: 0;
+    }
+}

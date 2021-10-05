@@ -1,0 +1,48 @@
+.header {
+    .banner {
+        position: absolute;
+        height: 5px;
+        top: 0;
+        right: 0;
+        left: 0;
+        background: #f1592a;
+        width: 100%;
+        overflow: hidden;
+        border-bottom: 1px solid #fff;
+        margin-bottom: 20px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: max-content;
+        overflow: visible;
+        padding: 0 25em 0;
+
+        .grid-item-span-rows {
+            grid-row: 1 / span 2;
+        }
+
+        div {
+            ul {
+                list-style-type: none;
+                display: inline-block;
+                float: right;
+                overflow: visible;
+                li {
+                    display: inline;
+                    
+                }
+
+                .card {
+                    border: solid 1px #BDBDBD;
+                    background-color: #eee;
+                    color: #979696;
+                    padding: 0.5em;
+                }
+            }
+        }
+
+    }
+
+}
