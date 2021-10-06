@@ -1,14 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
 @import './scss/style.scss';
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.h2-title-template {
-    h2 {
-        font-size: 22px;
-        color: #979696;
-        margin-bottom: 1em;
-        border-bottom: 1px dotted #979696;
-    }
-}

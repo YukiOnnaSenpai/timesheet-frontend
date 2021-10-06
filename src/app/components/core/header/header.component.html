@@ -1,24 +1,42 @@
-<div class="header">
-    <div class="banner"></div>
-    <div class="grid-container">
-        <div class="grid-item-span-rows">
-            <a href="https://www.vegait.rs/">
-                <img src="assets/img/logo.png" alt="VegaIT logo">
+<header class="header">
+    <div class="top-bar"></div>
+    <div class="wrapper">
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo.png" alt="VegaITSourcing Timesheet" />
             </a>
-        </div>
-        <div>
-            <ul class="display-inline">
-                <li> Sofija Matanovic </li>
-                <li> Logout</li>
-            </ul>
-        </div>
-        <div>
-            <!-- pipe the names async from service -->
-            <ul>
-                <li class="card" *ngFor="let cardName of cardNames">
-                    <a routerLink="{{cardName.link}}" routerLinkActive="active">{{ cardName.name }}</a>
+            <ul class="user right">
+                <li>
+                    <a href="">Sladjana Miljanovic</a>
+                    <div class="invisible"></div>
+                    <div class="user-menu">
+                        <ul>
+                            <li *ngFor="let userAction of userActions">
+                                <a routerLink="{{userAction.link}}" routerLinkActive="active" class="link">{{ userAction.name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="last">
+                    <a>Logout</a>
                 </li>
             </ul>
+            <nav>
+                <ul class="menu">
+                    <li *ngFor="let cardName of cardNames">
+                        <a class="btn nav" routerLink="{{cardName.link}}" routerLinkActive="active">{{ cardName.name }}</a>
+                    </li>
+                </ul>
+                <div class="mobile-menu">
+                    <a href="javascript:;" class="menu-btn">
+                        <i class="zmdi zmdi-menu"></i>
+                    </a>
+                    <ul>
+                        <li *ngFor="let cardName of cardNames">
+                            <a routerLink="{{cardName.link}}" routerLinkActive="active">{{ cardName.name }}</a>
+                        </li>
+                    </ul>
+                </div>					
+                <span class="line"></span>
+            </nav>
         </div>
-    </div>
-</div>
+</header>

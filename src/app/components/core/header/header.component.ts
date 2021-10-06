@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   cardNames = [{ name: 'Timesheet', link: 'timesheet' }, { name: 'Clients', link: 'clients' }, { name: 'Projects', link: 'projects' }, { name: 'Categories', link: 'categories' }, { name: 'Team members', link: 'teamMembers' }, { name: 'Reports', link: 'reports' }];
+  userActions = [{ name: 'Change password', link: '' }, { name: 'Settings', link: '' }, { name: 'Export all data', link: '' }];
 
 
   constructor() { }

@@ -1,46 +1,4 @@
-@import url(../../app.component.scss);
-.calendar{
-    .banner-grey {
-        border-bottom: 8px solid #BDBDBD;
-        width: 100%;
-        display: block;
-    }
-
-    .banner {
-        display: flex;
-        flex-direction: row;
-
-        .button-left {
-            float: left;
-        }
-
-        .button-right {
-            a {
-                float: right;
-            }
-        }
-
-    }
-
-    .content {
-        table {
-            thead {
-                display: inline-block;
-            }
-
-            tbody {
-
-            }
-        }
-    }
-
-    .hour-count {
-        width: auto;
-        overflow: hidden;
-        background: #ececec;
-        height: 3em;
-        line-height: 3em;
-        padding: 0 1em;
-        text-align: right;
-    }
+.calendar {
+    padding-top: 0.5em;
+    margin: auto;
 }

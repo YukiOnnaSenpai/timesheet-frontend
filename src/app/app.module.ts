@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/core/header/header.component';
 import { FooterComponent } from './components/core/footer/footer.component';
-import { HomeComponent } from './components/core/home/home.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarDetailComponent } from './components/calendar-detail/calendar-detail.component';
 import { OverviewComponent } from './components/overview/overview.component';
@@ -20,6 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 const Routes = [
   { path: '', redirectTo: 'timesheet', pathMatch: 'full' },
@@ -28,7 +28,8 @@ const Routes = [
   { path: 'projects', component: OverviewComponent },
   { path: 'categories', component: OverviewComponent },
   { path: 'teamMembers', component: OverviewComponent },
-  { path: 'reports', component: ReportsComponent }
+  { path: 'reports', component: ReportsComponent },
+  { path: 'day', component: CalendarDetailComponent }
 ];
 
 @NgModule({
@@ -36,7 +37,6 @@ const Routes = [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
     CalendarComponent,
     CalendarDetailComponent,
     OverviewComponent,
@@ -54,7 +54,8 @@ const Routes = [
     MatTabsModule,
     MatCardModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
