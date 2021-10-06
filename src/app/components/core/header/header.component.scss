@@ -17,7 +17,7 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: max-content;
         overflow: visible;
-        padding: 0 25em 0;
+        padding: 3em 30em 0;
 
         .grid-item-span-rows {
             grid-row: 1 / span 2;
@@ -31,7 +31,10 @@
                 overflow: visible;
                 li {
                     display: inline;
-                    
+                }
+
+                a {
+                    text-decoration: none;
                 }
 
                 .card {

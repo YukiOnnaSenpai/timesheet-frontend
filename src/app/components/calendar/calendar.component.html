@@ -1,9 +1,38 @@
 <div class="calendar">
-    <app-title ></app-title>
-    <div class="banner">
+    <div class="banner-grey"></div>
+    <mat-card>
+        <div class="h2-title-template">
+            <h2>Timesheet</h2>
+        </div>
+        <div class="banner">
+            <div class="button-left">
+                <button mat-button (click)="setMonth(-1)"><mat-icon aria-hidden="false" aria-label="chevron left">chevron_left</mat-icon> previous month</button>
+            </div>
+            <div class="title-date">
+                {{ currentDate | date:'fullDate' }}
+            </div>
+            <div class="button-right">
+                <button mat-button (click)="setMonth(+1)">next month <mat-icon aria-hidden="false" aria-label="navigate next">navigate_next</mat-icon></button>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="content">
+            <table class="table">
+                <thead>
+                    <tr *ngFor="let day of days">
+                        <th scope="col">{{day}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let date of dates">
+                        <td>{{date | date:'d'}}</td>
+                    </tr>
+                </tbody>
 
-    </div>
-    <div class="content">
-
-    </div>
+            </table>
+        </div>
+        <div class="hour-count">
+            <h3>Total hours: 90</h3>
+        </div>
+    </mat-card>
 </div>

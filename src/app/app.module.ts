@@ -12,7 +12,14 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { TitleComponent } from './components/core/title/title.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 const Routes = [
   { path: '', redirectTo: 'timesheet', pathMatch: 'full' },
@@ -21,7 +28,7 @@ const Routes = [
   { path: 'projects', component: OverviewComponent },
   { path: 'categories', component: OverviewComponent },
   { path: 'teamMembers', component: OverviewComponent },
-  { path: 'reports', component: ReportsComponent },
+  { path: 'reports', component: ReportsComponent }
 ];
 
 @NgModule({
@@ -33,14 +40,21 @@ const Routes = [
     CalendarComponent,
     CalendarDetailComponent,
     OverviewComponent,
-    ReportsComponent,
-    TitleComponent
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(Routes),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatListModule,
+    MatTabsModule,
+    MatCardModule,
+    MatIconModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
