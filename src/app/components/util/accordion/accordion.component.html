@@ -1,0 +1,412 @@
+<ng-container *ngIf="url === 'clients'">
+    <mat-accordion class="accordion-wrap clients">
+        <!-- itterate over clients -->
+        <mat-expansion-panel class="item" hideToggle>
+            <mat-expansion-panel-header class="heading">
+                <mat-panel-title>
+                    ADAM Software NV
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <ul class="form">
+                    <li>
+                        <label>Client name:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Zip/Postal code:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form">
+                    <li>
+                        <label>Address:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Country:</label>
+                        <select>
+                            <option>Select country</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="form last">
+                    <li>
+                        <label>City:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <div class="inner">
+                        <a href="javascript:;" class="btn green">Save</a>
+                        <a href="javascript:;" class="btn red">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="item" hideToggle>
+            <mat-expansion-panel-header class="heading">
+                <mat-panel-title>
+                    Clockwork
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <ul class="form">
+                    <li>
+                        <label>Client name:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Zip/Postal code:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form">
+                    <li>
+                        <label>Address:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Country:</label>
+                        <select>
+                            <option>Select country</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="form last">
+                    <li>
+                        <label>City:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <div class="inner">
+                        <a href="javascript:;" class="btn green">Save</a>
+                        <a href="javascript:;" class="btn red">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="item" hideToggle>
+            <mat-expansion-panel-header class="heading">
+                <mat-panel-title>
+                    Emperor Design
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <ul class="form">
+                    <li>
+                        <label>Client name:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Zip/Postal code:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form">
+                    <li>
+                        <label>Address:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Country:</label>
+                        <select>
+                            <option>Select country</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="form last">
+                    <li>
+                        <label>City:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <div class="inner">
+                        <a href="javascript:;" class="btn green">Save</a>
+                        <a href="javascript:;" class="btn red">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</ng-container>
+<ng-container *ngIf="url === 'projects'">
+    <mat-accordion class="accordion-wrap projects">
+        <!-- itterate over projects -->
+        <mat-expansion-panel class="item" hideToggle>
+            <mat-expansion-panel-header class="heading">
+                <mat-panel-title>
+                    <span>BuzzMonitor</span> <span><em>(Nina Media)</em></span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <ul class="form">
+                    <li>
+                        <label>Project name:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Lead:</label>
+                        <select>
+                            <option>Select lead</option>
+                            <option>Sasa Popovic</option>
+                            <option>Sladjana Miljanovic</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="form">
+                    <li>
+                        <label>Description:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+
+                </ul>
+                <ul class="form last">
+                    <li>
+                        <label>Customer:</label>
+                        <select>
+                            <option>Select customer</option>
+                            <option>Adam Software NV</option>
+                            <option>Clockwork</option>
+                            <option>Emperor Design</option>
+                        </select>
+                    </li>
+                    <li class="inline">
+                        <label>Status:</label>
+                        <span class="radio">
+                            <label for="inactive">Active:</label>
+                            <input type="radio" value="1" name="status" id="inactive" />
+                        </span>
+                        <span class="radio">
+                            <label for="active">Inactive:</label>
+                            <input type="radio" value="2" name="status" id="active" />
+                        </span>
+                        <span class="radio">
+                            <label for="active">Archive:</label>
+                            <input type="radio" value="3" name="status" id="active" />
+                        </span>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <div class="inner">
+                        <a href="javascript:;" class="btn green">Save</a>
+                        <a href="javascript:;" class="btn red">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="item" hideToggle>
+            <mat-expansion-panel-header class="heading">
+                <mat-panel-title>
+                    <span>PWN</span> <span><em>(Clockwork)</em></span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <ul class="form">
+                    <li>
+                        <label>Client name:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Zip/Postal code:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form">
+                    <li>
+                        <label>Address:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Country:</label>
+                        <select>
+                            <option>Select country</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="form last">
+                    <li>
+                        <label>City:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <div class="inner">
+                        <a href="javascript:;" class="btn green">Save</a>
+                        <a href="javascript:;" class="btn red">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="item" hideToggle>
+            <mat-expansion-panel-header class="heading">
+                <mat-panel-title>
+                    <span>B&G</span> <span><em>(Cubeworks)</em></span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <ul class="form">
+                    <li>
+                        <label>Client name:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Zip/Postal code:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form">
+                    <li>
+                        <label>Address:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Country:</label>
+                        <select>
+                            <option>Select country</option>
+                        </select>
+                    </li>
+                </ul>
+                <ul class="form last">
+                    <li>
+                        <label>City:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <div class="inner">
+                        <a href="javascript:;" class="btn green">Save</a>
+                        <a href="javascript:;" class="btn red">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</ng-container>
+<ng-container *ngIf="url === 'teamMembers'">
+    <mat-accordion class="accordion-wrap">
+        <!-- itterate over team members -->
+        <mat-expansion-panel class="item" hideToggle>
+            <mat-expansion-panel-header class="heading">
+                <mat-panel-title>
+                    <span>Sladjana Miljanovic</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <ul class="form">
+                    <li>
+                        <label>Name:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Hours per week:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form">
+                    <li>
+                        <label>Username:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Email:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form last">
+                    <li>
+                        <label>Status:</label>
+                        <span class="radio">
+                            <label for="inactive">Inactive:</label>
+                            <input type="radio" value="1" name="status" id="inactive" />
+                        </span>
+                        <span class="radio">
+                            <label for="active">Active:</label>
+                            <input type="radio" value="2" name="status" id="active" />
+                        </span>
+                    </li>
+                    <li>
+                        <label>Role:</label>
+                        <span class="radio">
+                            <label for="admin">Admin:</label>
+                            <input type="radio" value="1" name="status" id="admin" />
+                        </span>
+                        <span class="radio">
+                            <label for="worker">Worker:</label>
+                            <input type="radio" value="2" name="status" id="worker" />
+                        </span>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <div class="inner">
+                        <a href="javascript:;" class="btn green">Save</a>
+                        <a href="javascript:;" class="btn red">Delete</a>
+                        <a href="javascript:;" class="btn orange">Reset Password</a>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="item" hideToggle>
+            <mat-expansion-panel-header class="heading">
+                <mat-panel-title>
+                    <span>Sladjana Miljanovic</span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <ul class="form">
+                    <li>
+                        <label>Name:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Hours per week:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form">
+                    <li>
+                        <label>Username:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                    <li>
+                        <label>Email:</label>
+                        <input type="text" class="in-text" />
+                    </li>
+                </ul>
+                <ul class="form last">
+                    <li>
+                        <label>Status:</label>
+                        <span class="radio">
+                            <label for="inactive">Inactive:</label>
+                            <input type="radio" value="1" name="status" id="inactive" />
+                        </span>
+                        <span class="radio">
+                            <label for="active">Active:</label>
+                            <input type="radio" value="2" name="status" id="active" />
+                        </span>
+                    </li>
+                    <li>
+                        <label>Role:</label>
+                        <span class="radio">
+                            <label for="admin">Admin:</label>
+                            <input type="radio" value="1" name="status" id="admin" />
+                        </span>
+                        <span class="radio">
+                            <label for="worker">Worker:</label>
+                            <input type="radio" value="2" name="status" id="worker" />
+                        </span>
+                    </li>
+                </ul>
+                <div class="buttons">
+                    <div class="inner">
+                        <a href="javascript:;" class="btn green">Save</a>
+                        <a href="javascript:;" class="btn red">Delete</a>
+                        <a href="javascript:;" class="btn orange">Reset Password</a>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</ng-container>

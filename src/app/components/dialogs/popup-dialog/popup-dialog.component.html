@@ -1,0 +1,124 @@
+<ng-container *ngIf="data.url === 'clients'">
+    <h1 mat-dialog-title> Create new client </h1>
+    <div mat-dialog-content>
+        <p>Client name:</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Client name</mat-label>
+            <input matInput>
+            <!-- <input matInput [(ngModel)]="data.name"> -->
+        </mat-form-field>
+        <p>Address:</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input matInput>
+            <!-- <input matInput [(ngModel)]="data.address"> -->
+        </mat-form-field>
+        <p>City:</p>
+        <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput>
+            <!-- <input matInput [(ngModel)]="data.city"> -->
+        </mat-form-field>
+        <p>Postal code:</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Postal code</mat-label>
+            <input matInput>
+            <!-- <input matInput [(ngModel)]="data.postalCode"> -->
+        </mat-form-field>
+        <p>Country:</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <input matInput>
+            <!-- <input matInput [(ngModel)]="data.country"> -->
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="buttons">
+        <div class="inner">
+            <button mat-button [mat-dialog-close]="data.animal" class="btn green">Save</button>
+            <button mat-button (click)="onNoClick()">No Thanks</button>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="data.url === 'projects'">
+    <h1 mat-dialog-title> Create new project </h1>
+    <div mat-dialog-content>
+        <p>Project name:</p>
+        <mat-form-field>
+            <mat-label>Project name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <p>Description:</p>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <p>Customer:</p>
+        <mat-form-field>
+            <mat-label>Customer</mat-label>
+            <mat-select name="customers">
+                <mat-option *ngFor="let customer of customers">
+                    {{customer}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <p>Lead:</p>
+        <mat-form-field>
+            <mat-label>Lead</mat-label>
+            <mat-select name="leads">
+                <mat-option *ngFor="let lead of leads">
+                    {{lead}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="buttons">
+        <div class="inner">
+            <button mat-button [mat-dialog-close]="data.animal" class="btn green">Save</button>
+            <button mat-button (click)="onNoClick()">No Thanks</button>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="data.url === 'teamMembers'">
+    <h1 mat-dialog-title> Create new member </h1>
+    <div mat-dialog-content>
+        <p>Name:</p>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <p>Hours per week:</p>
+        <mat-form-field>
+            <mat-label>Hours per week</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <p>Username:</p>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <p>Email:</p>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-label>Status: </mat-label>
+        <mat-radio-group name="status">
+            <mat-radio-button *ngFor="let stats of status" value="stats.value">
+                {{stats.name}}
+            </mat-radio-button>
+        </mat-radio-group>
+        <p>Role:</p>
+        <mat-label>Role: </mat-label>
+        <mat-radio-group name="role">
+            <mat-radio-button *ngFor="let role of roles" value="role.value">
+                {{role.name}}
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div mat-dialog-actions class="buttons">
+        <div class="inner">
+            <button mat-button [mat-dialog-close]="data.animal" class="btn green">Invite team member</button>
+            <button mat-button (click)="onNoClick()">No Thanks</button>
+        </div>
+    </div>
+</ng-container>
