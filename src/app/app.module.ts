@@ -10,7 +10,7 @@ import { CalendarDetailComponent } from './components/calendar-detail/calendar-d
 import { OverviewComponent } from './components/overview/overview.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PopupDialogComponent } from './components/dialogs/popup-dialog/popup-dialog.component';
 import { AlphaSortComponent } from './components/util/alpha-sort/alpha-sort.component';
 import { SearchboxComponent } from './components/util/searchbox/searchbox.component';
@@ -77,7 +78,9 @@ const Routes = [
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
