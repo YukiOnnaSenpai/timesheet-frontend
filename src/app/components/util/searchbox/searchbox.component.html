@@ -1,15 +1,10 @@
-<!-- <div class="search-page">
-    <input type="search" name="search-clients" class="in-search" />
-</div> -->
-
-
 <form class="search-page">
-    <mat-form-field class="search-page in-search">
+    <div mat-form-field class="search-page in-search">
         <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" class="search-page in-search">
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option" class="search-page in-search">
                 {{option}}
             </mat-option>
         </mat-autocomplete>
-    </mat-form-field>
+    </div>
 </form>

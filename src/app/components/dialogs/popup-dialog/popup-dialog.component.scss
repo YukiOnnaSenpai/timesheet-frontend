@@ -1,0 +1,46 @@
+.container {
+    width: 450px;
+    height: 120% !important;
+
+    h2 {
+        font-size: 22px;
+        color: #979696;
+        margin-bottom: 15px;
+        border-bottom: 1px dotted #979696;
+    }
+
+    form {
+
+        .form-content {
+            border-bottom: 1px solid silver;
+            padding-bottom: 15px;
+            width: 100%;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                color: #666;
+                font-size: 12px;
+            }
+
+            div {
+                input {
+                    background-color: #fff;
+                    border: solid 1px silver;
+                    height: 28px;
+                }
+            }
+        }
+		.margin {
+			display: inline-flex;
+			flex-direction: row;
+			justify-content: center;
+			margin-left: 1em;
+		}
+		.mat-dialog-actions {
+			margin-bottom: 0px !important;
+			justify-content: center;
+		}
+    }
+}
+
