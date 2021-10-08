@@ -10,6 +10,7 @@ import { PopupDialogComponent } from '../dialogs/popup-dialog/popup-dialog.compo
 })
 export class OverviewComponent implements OnInit {
   url: string;
+  alphabetSortingString: string = '';
 
   constructor(route: ActivatedRoute, public dialog: MatDialog) {
     this.url = route.snapshot.url.join('');
@@ -25,6 +26,10 @@ export class OverviewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  setSelectedCharacterForSorting(character: string) {
+    this.alphabetSortingString = character;
   }
 
 }

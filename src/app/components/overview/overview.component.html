@@ -7,8 +7,8 @@
                 <button (click)="openDialog()" class="link new-member-popup">Create new client</button>
                 <app-searchbox></app-searchbox>
             </div>
-            <app-alpha-sort></app-alpha-sort>
-            <app-accordion></app-accordion>
+            <app-alpha-sort (selectedCharacterEvent)="setSelectedCharacterForSorting($event)"></app-alpha-sort>
+            <app-accordion [filter]="alphabetSortingString"></app-accordion>
             <app-pagination></app-pagination>
         </ng-container>
         <ng-container *ngIf="url === 'projects'">
@@ -17,8 +17,8 @@
                 <button (click)="openDialog()" class="link new-member-popup">Create new project</button>
                 <app-searchbox></app-searchbox>
             </div>
-            <app-alpha-sort></app-alpha-sort>
-            <app-accordion></app-accordion>
+            <app-alpha-sort (selectedCharacterEvent)="setSelectedCharacterForSorting($event)"></app-alpha-sort>
+            <app-accordion [filter]="alphabetSortingString"></app-accordion>
             <app-pagination></app-pagination>
         </ng-container>
         <ng-container *ngIf="url === 'categories'">

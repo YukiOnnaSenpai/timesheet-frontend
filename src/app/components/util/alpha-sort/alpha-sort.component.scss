@@ -1,0 +1,33 @@
+div {
+    ul {
+        li {
+            button {
+                text-transform: uppercase;
+                background: #eee;
+                border: 1px solid #bdbdbd;
+                display: block;
+                width: 24px;
+                height: 24px;
+                text-align: center;
+                font-size: 14px;
+                line-height: 24px;
+                font-weight: bold;
+                color: #f67d34;
+                font-family: Tahoma, Arial, sans-serif;
+            }
+
+            .active {
+                color: #fff;
+                background: #f67d34;
+                border-color: #f67d34;
+            }
+
+            .disabled {
+                color: silver;
+                background: #ececec;
+                border-color: #ececec;
+                cursor: default;
+            }
+        }
+    }
+}

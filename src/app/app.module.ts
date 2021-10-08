@@ -32,6 +32,7 @@ import { AlphaSortComponent } from './components/util/alpha-sort/alpha-sort.comp
 import { SearchboxComponent } from './components/util/searchbox/searchbox.component';
 import { AccordionComponent } from './components/util/accordion/accordion.component';
 import { PaginationComponent } from './components/util/pagination/pagination.component';
+import { SearchFilterPipePipe } from './components/util/pipes/search-filter-pipe.pipe';
 
 const Routes = [
   { path: '', redirectTo: 'timesheet', pathMatch: 'full' },
@@ -57,7 +58,8 @@ const Routes = [
     AlphaSortComponent,
     SearchboxComponent,
     AccordionComponent,
-    PaginationComponent
+    PaginationComponent,
+    SearchFilterPipePipe
   ],
   imports: [
     BrowserModule,
