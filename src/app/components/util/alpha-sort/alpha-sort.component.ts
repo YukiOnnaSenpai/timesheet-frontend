@@ -8,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output, Renderer2, ElementRef, ViewChi
 export class AlphaSortComponent implements OnInit {
   alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   isCharacterSelected: boolean = false;
+  activeCharacter: string = '';
 
   @Output() selectedCharacterEvent = new EventEmitter<string>();
   @ViewChild('li', { static: false }) listItem: ElementRef | any;
@@ -20,16 +21,22 @@ export class AlphaSortComponent implements OnInit {
   selectedCharacter(character : string) {
     this.selectedCharacterEvent.emit(character);
     this.isCharacterSelected = true;
-    this.addClass();
+    this.activeCharacter = character;
+    this.addAcitveClass();
+    if(this.activeCharacter != '' && this.activeCharacter != character)
+    {
+      this.removeActiveClass();
+    }
+    this.activeCharacter = character;
     // return character;
   }
 
-  addClass() {
+  addAcitveClass() {
     this.renderer.addClass(this.listItem.nativeElement, 'active' );
   }
    
-  removeClass() {
-    this.renderer.removeClass(this.listItem.nativeElement, 'blackborder');
+  removeActiveClass() {
+    this.renderer.removeClass(this.listItem.nativeElement, 'active');
   }
 
 }

@@ -1,6 +1,5 @@
 <div class="alpha">
     <ul>
-        <!-- class="active", class="disabled" -->
         <li #li *ngFor=" let character of alphabet" [ngClass]="( isCharacterSelected ? 'active' : '')">
             <button type="submit" (click)="selectedCharacter(character)">{{character}}</button>
         </li>
