@@ -8,7 +8,7 @@
                 <app-searchbox></app-searchbox>
             </div>
             <app-alpha-sort (selectedCharacterEvent)="setSelectedCharacterForSorting($event)"></app-alpha-sort>
-            <app-accordion [filter]="alphabetSortingString"></app-accordion>
+            <app-accordion [filter]="alphabetSortingString" [data]="clients" [flag]="flag"></app-accordion>
             <app-pagination></app-pagination>
         </ng-container>
         <ng-container *ngIf="url === 'projects'">
@@ -18,7 +18,7 @@
                 <app-searchbox></app-searchbox>
             </div>
             <app-alpha-sort (selectedCharacterEvent)="setSelectedCharacterForSorting($event)"></app-alpha-sort>
-            <app-accordion [filter]="alphabetSortingString"></app-accordion>
+            <app-accordion [filter]="alphabetSortingString" [data]="projects" [flag]="flag"></app-accordion>
             <app-pagination></app-pagination>
         </ng-container>
         <ng-container *ngIf="url === 'categories'">
@@ -29,7 +29,7 @@
             <div class="grey-box-wrap reports ico-member">
                 <button (click)="openDialog()" class="link new-member-popup">Create new member</button>
             </div>
-            <app-accordion></app-accordion>
+            <app-accordion [filter]="alphabetSortingString" [data]="teamMembers" [flag]="flag"></app-accordion>
             <app-pagination></app-pagination>
         </ng-container>
     </section>

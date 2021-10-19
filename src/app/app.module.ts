@@ -33,6 +33,16 @@ import { SearchboxComponent } from './components/util/searchbox/searchbox.compon
 import { AccordionComponent } from './components/util/accordion/accordion.component';
 import { PaginationComponent } from './components/util/pagination/pagination.component';
 import { SearchFilterPipePipe } from './components/util/pipes/search-filter-pipe.pipe';
+import { FormComponent } from './components/util/form/form.component';
+import { CategoryService } from './services/category/category.service';
+import { ClientService } from './services/client/client.service';
+import { CountryService } from './services/country/country.service';
+import { ProjectService } from './services/project/project.service';
+import { ReportsService } from './services/reports/reports.service';
+import { RoleService } from './services/role/role.service';
+import { TeamMemberService } from './services/team-member/team-member.service';
+import { TimeSheetService } from './services/time-sheet/time-sheet.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const Routes = [
   { path: '', redirectTo: 'timesheet', pathMatch: 'full' },
@@ -59,7 +69,8 @@ const Routes = [
     SearchboxComponent,
     AccordionComponent,
     PaginationComponent,
-    SearchFilterPipePipe
+    SearchFilterPipePipe,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -82,9 +93,10 @@ const Routes = [
     MatRadioModule,
     FormsModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
-  providers: [],
+  providers: [CategoryService, ClientService, CountryService, ProjectService, ReportsService, RoleService, TeamMemberService, TimeSheetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

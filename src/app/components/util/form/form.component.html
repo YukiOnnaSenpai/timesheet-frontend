@@ -1,0 +1,173 @@
+<ng-container *ngIf="flag == 1">
+    <div class="container">
+        <form class="mat-dialog-content" #formControl="ngForm">
+            <div class="form">
+                <mat-form-field>
+                    <label>Client name:</label>
+                    <input matInput [(ngModel)]="data.name" name="name" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Zip/Postal code:</label>
+                    <input matInput [(ngModel)]="data.postalCode" name="postalCode" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Address:</label>
+                    <input matInput [(ngModel)]="data.address" name="address" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Country:</label>
+                    <mat-select [(ngModel)]="data.countryId" name="countryId">
+                        <mat-option *ngFor="let country of countries" [value]="country.id" required>
+                            {{country.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>City:</label>
+                    <input matInput="matInput" [(ngModel)]="data.city" name="city" required="required">
+                </mat-form-field>
+            </div>
+            <ng-container *ngIf="parentComponentName === 'accordion'">
+                <div class="buttons">
+                    <div class="inner">
+                        <button class="btn green margin" (click)="save()" [disabled]="!formControl.valid">Save</button>
+                        <button class="btn red" (click)="delete()">Delete</button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="parentComponentName === 'dialog'">
+                <button class="btn green margin" (click)="save()" [disabled]="!formControl.valid">Save</button>
+                <button class="btn red" (click)="cancel()">Cancel</button>
+            </ng-container>
+        </form>
+    </div>
+</ng-container>
+<ng-container *ngIf="flag == 2">
+    <div class="container">
+        <form class="mat-dialog-content" #formControl="ngForm">
+            <div class="form">
+                <mat-form-field>
+                    <label>Project name:</label>
+                    <input matInput [(ngModel)]="data.name" name="name" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Lead:</label>
+                    <mat-select [(ngModel)]="data.leadId" name="leadId">
+                        <mat-option *ngFor="let teamMember of teamMembers" [value]="teamMember.id" required>
+                            {{teamMember.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Description:</label>
+                    <input matInput [(ngModel)]="data.description" name="description" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Customer:</label>
+                    <mat-select [(ngModel)]="data.clientId" name="clientId">
+                        <mat-option *ngFor="let client of clients" [value]="client.id" required>
+                            {{client.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <ng-container *ngIf="parentComponentName === 'accordion'">
+                <div class="form">
+                    <label id="radio-group-label">Status:</label>
+                    <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="data.projectStatus" name="projectStatus">
+                        <mat-radio-button color="primary" *ngFor="let state of status" [value]="state.value">
+                            {{state.name}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="form">
+                    <label>Archive:</label>
+                    <mat-checkbox color="primary" [(ngModel)]="data.archive" name="archive" ngDefaultControl></mat-checkbox>
+                </div>
+                <div class="buttons">
+                    <div class="inner">
+                        <button class="btn green margin" (click)="save()" [disabled]="!formControl.valid">Save</button>
+                        <button class="btn red" (click)="delete()">Delete</button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="parentComponentName === 'dialog'">
+                <button class="btn green margin" (click)="save()" [disabled]="!formControl.valid">Save</button>
+                <button class="btn red" (click)="cancel()">Cancel</button>
+            </ng-container>
+        </form>
+    </div>
+</ng-container>
+<ng-container *ngIf="flag == 3">
+    <div class="container">
+        <form class="mat-dialog-content" #formControl="ngForm">
+            <div class="form">
+                <mat-form-field>
+                    <label>Name:</label>
+                    <input matInput [(ngModel)]="data.name" name="name" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Hours per week:</label>
+                    <input matInput [(ngModel)]="data.hoursPerWeek" name="hoursPerWeek" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Username:</label>
+                    <input matInput [(ngModel)]="data.username" name="username" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Email:</label>
+                    <input matInput [(ngModel)]="data.email" name="email" required="required">
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <label id="radio-group-label">Status:</label>
+                <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="data.status" name="status">
+                    <mat-radio-button color="primary" *ngFor="let state of status" [value]="state.value">
+                        {{state.name}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="form">
+                <mat-form-field>
+                    <label>Role:</label>
+                        <mat-select [(ngModel)]="data.roles" name="roles" multiple>
+                        <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="buttons">
+                <div class="inner">
+                    <ng-container *ngIf="parentComponentName === 'accordion'">
+                        <button class="btn green margin" (click)="save()" [disabled]="!formControl.valid">Save</button>
+                        <button class="btn red" (click)="delete()">Delete</button>
+                        <button class="btn red" (click)="resetPassword()">Reset password</button>
+                    </ng-container>
+                    <ng-container *ngIf="parentComponentName === 'dialog'">
+                        <button class="btn green margin" (click)="save()" [disabled]="!formControl.valid">Invite member</button>
+                        <button class="btn red" (click)="cancel()">Cancel</button>
+                    </ng-container>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-container>

@@ -19,6 +19,7 @@ export class AlphaSortComponent implements OnInit {
   }
 
   selectedCharacter(character : string) {
+    //check logic once again!
     this.selectedCharacterEvent.emit(character);
     this.isCharacterSelected = true;
     this.activeCharacter = character;
