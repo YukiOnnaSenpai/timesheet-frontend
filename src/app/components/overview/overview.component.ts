@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { IClient } from 'src/app/models/client';
-import { IProject } from 'src/app/models/project';
-import { ITeamMember } from 'src/app/models/team-member';
+import { IClient, IClientCore } from 'src/app/models/client';
+import { IProject, IProjectCore } from 'src/app/models/project';
+import { ITeamMember, ITeamMemberCore } from 'src/app/models/team-member';
 import { ClientService } from 'src/app/services/client/client.service';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { TeamMemberService } from 'src/app/services/team-member/team-member.service';
@@ -17,9 +17,7 @@ import { PopupDialogComponent } from '../dialogs/popup-dialog/popup-dialog.compo
 export class OverviewComponent implements OnInit {
   url: string;
   flag: number = 0;
-  clients: IClient[] = [];
-  projects: IProject[] = [];
-  teamMembers: ITeamMember[] = [];
+  data: any[] = [];
   alphabetSortingString: string = '';
 
 
@@ -35,28 +33,31 @@ export class OverviewComponent implements OnInit {
     this.flag = 0;
     if(this.url === 'clients'){
       this.getClients(1);
+      this.data as IClientCore[];
       this.flag = 1;
     } else if(this.url === 'projects'){
-      this.flag = 2;
       this.getProjects(1);
+      this.flag = 2;
+      this.data as IProjectCore[];
     } else if(this.url === 'teamMembers'){
-      this.flag = 3;
       this.getTeamMembers(1);
+      this.flag = 3;
+      this.data as ITeamMemberCore[];
     } else if(this.url === 'categories'){
       this.flag = 4;
     }
   }
 
   getClients(pageNumber: number) : void {
-    this.clientService.getClients(pageNumber).subscribe(clients => this.clients = clients);
+    this.clientService.getClients(pageNumber).subscribe(clients => this.data = clients);
   }
 
   getProjects(pageNumber: number) : void {
-    this.projectService.getProjects(pageNumber).subscribe(projects => this.projects = projects);
+    this.projectService.getProjects(pageNumber).subscribe(projects => this.data = projects);
   }
 
   getTeamMembers(pageNumber: number): void {
-    this.teamMemberService.getTeamMembers(pageNumber).subscribe(teamMembers => this.teamMembers = teamMembers);
+    this.teamMemberService.getTeamMembers(pageNumber).subscribe(teamMembers => this.data = teamMembers);
   }
 
   openDialog(): void {

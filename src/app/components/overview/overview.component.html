@@ -1,35 +1,27 @@
 <div class="wrapper">
     <section class="content">
-        <ng-container *ngIf="url === 'clients'">
-            <h2><i class="ico clients"></i>Clients</h2>
-            <!-- <h2><mat-icon>business</mat-icon> Clients </h2> -->
+        <div *ngIf="flag != 3;else other_content">
+            <h2>{{ url | titlecase }}</h2>
+        </div>
+        <ng-template #other_content>
+            <h2>{{ url | slice:0:4 | titlecase }} {{ url | slice:-7 | lowercase }}</h2>
+        </ng-template>
+        <ng-container *ngIf="flag != 4">
             <div class="grey-box-wrap reports">
-                <button (click)="openDialog()" class="link new-member-popup">Create new client</button>
-                <app-searchbox></app-searchbox>
+                <div *ngIf="flag != 3;else other_content">
+                    <button (click)="openDialog()" class="link new-member-popup">Create new {{ url | slice:0:-1 }}</button>
+                </div>
+                <ng-template #other_content>
+                    <button (click)="openDialog()" class="link new-member-popup">Create new {{ url | slice:0:4 }} {{ url | slice:-7 | lowercase }} </button>
+                </ng-template>
+                <ng-container *ngIf="flag == 1 || flag == 2">
+                    <app-searchbox></app-searchbox>
+                </ng-container>
             </div>
-            <app-alpha-sort (selectedCharacterEvent)="setSelectedCharacterForSorting($event)"></app-alpha-sort>
-            <app-accordion [filter]="alphabetSortingString" [data]="clients" [flag]="flag"></app-accordion>
-            <app-pagination></app-pagination>
-        </ng-container>
-        <ng-container *ngIf="url === 'projects'">
-            <h2><i class="ico projects"></i>Projects</h2>
-            <div class="grey-box-wrap reports">
-                <button (click)="openDialog()" class="link new-member-popup">Create new project</button>
-                <app-searchbox></app-searchbox>
-            </div>
-            <app-alpha-sort (selectedCharacterEvent)="setSelectedCharacterForSorting($event)"></app-alpha-sort>
-            <app-accordion [filter]="alphabetSortingString" [data]="projects" [flag]="flag"></app-accordion>
-            <app-pagination></app-pagination>
-        </ng-container>
-        <ng-container *ngIf="url === 'categories'">
-            <h2><i class="ico categories"></i>Categories</h2>
-        </ng-container>
-        <ng-container *ngIf="url === 'teamMembers'">
-            <h2><i class="ico team-member"></i>Team members</h2>
-            <div class="grey-box-wrap reports ico-member">
-                <button (click)="openDialog()" class="link new-member-popup">Create new member</button>
-            </div>
-            <app-accordion [filter]="alphabetSortingString" [data]="teamMembers" [flag]="flag"></app-accordion>
+            <ng-container *ngIf="flag == 1 || flag == 2">
+                <app-alpha-sort (selectedCharacterEvent)="setSelectedCharacterForSorting($event)"></app-alpha-sort>
+            </ng-container>
+            <app-accordion [filter]="alphabetSortingString" [data]="data" [flag]="flag"></app-accordion>
             <app-pagination></app-pagination>
         </ng-container>
     </section>
