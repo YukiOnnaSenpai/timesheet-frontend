@@ -1,21 +1,11 @@
 <div class="wrapper">
     <section class="content">
-        <div *ngIf="flag != 3;else other_content">
-            <h2>{{ url | titlecase }}</h2>
-        </div>
-        <ng-template #other_content>
-            <h2>{{ url | slice:0:4 | titlecase }} {{ url | slice:-7 | lowercase }}</h2>
-        </ng-template>
+            <h2>{{ title }}</h2>
         <ng-container *ngIf="flag != 4">
             <div class="grey-box-wrap reports">
-                <div *ngIf="flag != 3;else other_content">
-                    <button (click)="openDialog()" class="link new-member-popup">Create new {{ url | slice:0:-1 }}</button>
-                </div>
-                <ng-template #other_content>
-                    <button (click)="openDialog()" class="link new-member-popup">Create new {{ url | slice:0:4 }} {{ url | slice:-7 | lowercase }} </button>
-                </ng-template>
+                    <button (click)="openDialog()" class="link new-member-popup">Create new {{ title | lowercase | slice:0:-1 }}</button>
                 <ng-container *ngIf="flag == 1 || flag == 2">
-                    <app-searchbox></app-searchbox>
+                    <app-searchbox [options]="dataNames"></app-searchbox>
                 </ng-container>
             </div>
             <ng-container *ngIf="flag == 1 || flag == 2">

@@ -1,9 +1,10 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { IClient, IClientCore } from 'src/app/models/client';
-import { IProject, IProjectCore } from 'src/app/models/project';
-import { ITeamMember, ITeamMemberCore } from 'src/app/models/team-member';
+import { IClientCore } from 'src/app/models/client';
+import { IProjectCore } from 'src/app/models/project';
+import { ITeamMemberCore } from 'src/app/models/team-member';
 import { ClientService } from 'src/app/services/client/client.service';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { TeamMemberService } from 'src/app/services/team-member/team-member.service';
@@ -17,7 +18,9 @@ import { PopupDialogComponent } from '../dialogs/popup-dialog/popup-dialog.compo
 export class OverviewComponent implements OnInit {
   url: string;
   flag: number = 0;
+  title: string = '';
   data: any[] = [];
+  dataNames: string[] = [];
   alphabetSortingString: string = '';
 
 
@@ -25,7 +28,8 @@ export class OverviewComponent implements OnInit {
     public dialog: MatDialog, 
     private clientService: ClientService,
     private projectService: ProjectService,
-    private teamMemberService: TeamMemberService) {
+    private teamMemberService: TeamMemberService,
+    private titlePipe: TitleCasePipe) {
     this.url = route.snapshot.url.join('');
   }
 
@@ -33,30 +37,42 @@ export class OverviewComponent implements OnInit {
     this.flag = 0;
     if(this.url === 'clients'){
       this.getClients(1);
-      this.data as IClientCore[];
       this.flag = 1;
     } else if(this.url === 'projects'){
       this.getProjects(1);
       this.flag = 2;
-      this.data as IProjectCore[];
-    } else if(this.url === 'teamMembers'){
+    } else if(this.url === 'team-members'){
       this.getTeamMembers(1);
       this.flag = 3;
-      this.data as ITeamMemberCore[];
     } else if(this.url === 'categories'){
       this.flag = 4;
     }
+    this.setTitle();
+  }
+
+  setTitle() {
+      this.url = this.url.includes("-") ? this.url.replace("-"," ") : this.url;
+      this.title = this.titlePipe.transform(this.url);
   }
 
   getClients(pageNumber: number) : void {
-    this.clientService.getClients(pageNumber).subscribe(clients => this.data = clients);
+    this.data as IClientCore[];
+    this.clientService.getClients(pageNumber).subscribe(clients => { 
+      this.data = clients;
+      this.dataNames = clients.map((item) => item.name);
+     });
   }
 
   getProjects(pageNumber: number) : void {
-    this.projectService.getProjects(pageNumber).subscribe(projects => this.data = projects);
+    this.data as IProjectCore[];
+    this.projectService.getProjects(pageNumber).subscribe(projects => {
+      this.data = projects;
+      this.dataNames = projects.map((item) => item.name);
+    });
   }
 
   getTeamMembers(pageNumber: number): void {
+    this.data as ITeamMemberCore[];
     this.teamMemberService.getTeamMembers(pageNumber).subscribe(teamMembers => this.data = teamMembers);
   }
 

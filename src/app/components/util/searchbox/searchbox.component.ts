@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -10,8 +10,9 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class SearchboxComponent implements OnInit {
   myControl = new FormControl();
-  options: string[] = ['Adam Software NV','Clockwork','Emperor Design'];
   filteredOptions: Observable<string[]> | undefined;
+  
+  @Input('options') options: any[] = [];
 
   constructor() { }
 

@@ -89,7 +89,7 @@
                 <div class="form">
                     <label id="radio-group-label">Status:</label>
                     <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="data.projectStatus" name="projectStatus">
-                        <mat-radio-button color="primary" *ngFor="let state of status" [value]="state.value">
+                        <mat-radio-button color="primary" *ngFor="let state of status" [value]="state.value" required>
                             {{state.name}}
                         </mat-radio-button>
                     </mat-radio-group>
@@ -151,7 +151,7 @@
                 <mat-form-field>
                     <label>Role:</label>
                         <mat-select [(ngModel)]="data.roles" name="roles" multiple>
-                        <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+                        <mat-option *ngFor="let role of roles" [value]="role.id" required>{{role.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -166,6 +166,76 @@
                         <button class="btn green margin" (click)="save()" [disabled]="!formControl.valid">Invite member</button>
                         <button class="btn red" (click)="cancel()">Cancel</button>
                     </ng-container>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-container>
+<ng-container *ngIf="flag == 4">
+    <div class="grey-box-wrap reports">
+        <form class="mat-dialog-content" #formControl="ngForm" class="report">
+            <div class="form">
+                <div mat-form-field>
+                    <label>Team member:</label>
+                    <mat-select [(ngModel)]="data.teamMemberId" name="teamMemberId" class="report select" placeholder="All">
+                        <mat-option *ngFor="let member of teamMembers" [value]="member.id">
+                            {{member.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="form">
+                <div mat-form-field>
+                    <label>Category:</label>
+                    <mat-select [(ngModel)]="data.categoryId" name="categoryId" class="report select" placeholder="All">
+                        <mat-option *ngFor="let category of categories" [value]="category.id">
+                            {{category.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="form">
+                <div mat-form-field>
+                    <label>Client:</label>
+                    <mat-select [(ngModel)]="data.clientId" name="clientId" class="report select" placeholder="All">
+                        <mat-option *ngFor="let client of clients" [value]="client.id">
+                            {{client.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="form">
+                <!-- DATEPICKER -->
+                <div mat-form-field>
+                    <label>Start date:</label>
+                    <input matInput [(ngModel)]="data.startDate" name="startDate" [matDatepicker]="pickerStartDate">
+                    <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerStartDate></mat-datepicker>
+                </div>
+            </div>
+            <div class="form">
+                <div mat-form-field>
+                    <label>Project:</label>
+                    <mat-select [(ngModel)]="data.projectId" name="projectId" class="report select" placeholder="All">
+                        <mat-option *ngFor="let project of projects" [value]="project.id">
+                            {{project.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="form">
+                <!-- DATEPICKER -->
+                <div mat-form-field>
+                    <label>End date:</label>
+                    <input matInput [(ngModel)]="data.endDate" name="endDate" [matDatepicker]="pickerEndDate">
+                    <mat-datepicker-toggle matSuffix [for]="pickerEndDate"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerEndDate></mat-datepicker>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="inner">
+                    <button class="btn orange right" (click)="reset()" >Reset</button>
+                    <button class="btn green right" (click)="search()">Search</button>
                 </div>
             </div>
         </form>

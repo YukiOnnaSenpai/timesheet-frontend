@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ICategoryCore } from 'src/app/models/category';
 import { IClient, IClientCore } from 'src/app/models/client';
 import { ICountryCore } from 'src/app/models/country';
 import { IProject, IProjectCore } from 'src/app/models/project';
 import { IRoleCore } from 'src/app/models/role';
 import { ITeamMember, ITeamMemberCore } from 'src/app/models/team-member';
+import { CategoryService } from 'src/app/services/category/category.service';
 import { ClientService } from 'src/app/services/client/client.service';
 import { CountryService } from 'src/app/services/country/country.service';
 import { ProjectService } from 'src/app/services/project/project.service';
@@ -21,10 +23,11 @@ export class FormComponent implements OnInit {
     { name: 'Inactive', value: 0 },
   ];
   countries: ICountryCore[] = [];
-
   clients: IClientCore[] = [];
   teamMembers: ITeamMemberCore[] = [];
   roles: IRoleCore[] = [];
+  projects: IProjectCore[] = [];
+  categories: ICategoryCore[] = [];
 
   @Input('flag') flag = 0;
   @Input('selectedData') data = <any>{};
@@ -37,7 +40,8 @@ export class FormComponent implements OnInit {
     private teamMemberService: TeamMemberService,
     private clientService: ClientService,
     private roleService: RoleService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
@@ -48,9 +52,14 @@ export class FormComponent implements OnInit {
       this.getTeamMembers(1);
       this.getClients(1);
       this.data as IProjectCore;
-    } else {
+    } else if(this.flag == 3){
       this.getRoles(1);
       this.data as ITeamMemberCore;
+    } else {
+      this.getTeamMembers(1);
+      this.getClients(1);
+      this.getProjects(1);
+      this.getCategories(1);
     }
   }
 
@@ -65,7 +74,6 @@ export class FormComponent implements OnInit {
           .updateProject(this.data as IProjectCore, this.data.id)
           .subscribe((data) => (this.data = data as IProjectCore));
       } else {
-        console.log('data', this.data);
         this.teamMemberService
           .updateTeamMember(this.data as ITeamMemberCore, this.data.id)
           .subscribe((data) => (this.data = data as ITeamMemberCore));
@@ -100,37 +108,45 @@ export class FormComponent implements OnInit {
     this.ngOnInit();
   }
 
+  cancel() {
+    this.cancelEvent.emit();
+  }
+
   resetPassword() {}
 
+  reset() {}
+
+  search() {}
+
   getCountries(pageNumber: number): void {
-    this.countries = [];
     this.countryService
       .getCountries(pageNumber)
       .subscribe((countries) => (this.countries = countries));
   }
 
   getTeamMembers(pageNumber: number) {
-    this.teamMembers = [];
     this.teamMemberService
       .getTeamMembers(pageNumber)
       .subscribe((teamMembers) => (this.teamMembers = teamMembers));
   }
 
   getClients(pageNumber: number) {
-    this.clients = [];
     this.clientService
       .getClients(pageNumber)
       .subscribe((clients) => (this.clients = clients));
   }
 
   getRoles(pageNumber: number) {
-    this.roles = [];
     this.roleService
       .getRoles(pageNumber)
       .subscribe((roles) => (this.roles = roles));
   }
 
-  cancel() {
-    this.cancelEvent.emit();
+  getProjects(pageNumber: number) {
+    this.projectService.getProjects(pageNumber).subscribe(projects => this.projects = projects);
+  }
+
+  getCategories(pageNumber: number) {
+    this.categoryService.getCategories(pageNumber).subscribe(categories => this.categories = categories);
   }
 }

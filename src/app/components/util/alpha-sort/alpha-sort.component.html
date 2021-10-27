@@ -1,6 +1,8 @@
 <div class="alpha">
     <ul>
-        <li #li *ngFor=" let character of alphabet" [ngClass]="( isCharacterSelected ? 'active' : '')">
+        <!-- [ngClass]="{'disable': data.date > this.endDate, 'previous': data.date < this.startDate, 'positive': data.hours >= 7.5, 'negative': data.hours > 0 && data.hours < 7.5}" -->
+        <!-- <li #li *ngFor=" let character of alphabet" [ngClass]="( isCharacterSelected ? 'active' : '')"> -->
+        <li #li *ngFor=" let character of alphabet" [ngClass]="{'active': isCharacterSelected}">
             <button type="submit" (click)="selectedCharacter(character)">{{character}}</button>
         </li>
     </ul>

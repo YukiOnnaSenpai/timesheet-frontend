@@ -1,18 +1,29 @@
-.buttons{
-    float: right;
+.buttons {
+  float: right;
 
-    div {
-        top: 100%;
-        right: 0%;
-        
-        a {
-            margin-left: 1em; 
-        }
+  div {
+    top: 100%;
+    right: 0%;
+
+    a {
+      margin-left: 1em;
     }
+  }
 }
 
-.checkbox-as-radio {
-    -webkit-appearance: radio; /* Chrome, Safari, Opera */
-  	-moz-appearance: radio;    /* Firefox */
-  	-ms-appearance: radio;     /* not currently supported */
+.report {
+  .mat-typography {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+  }
+  .label {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+  }
+  .select {
+    background: #fff;
+    border: solid 1px silver;
+    padding: 5px;
+  }
+
 }
