@@ -18,17 +18,17 @@ export class CountryService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   getCountries(pageNumber: number): Observable<ICountryCore[]> {
-    return this.httpClient.get<ICountryCore[]>(
+    return this._httpClient.get<ICountryCore[]>(
       this.BASE_URL + 'get-countries',
       { params: { page: pageNumber } }
     );
   }
 
   getCountry(ICountryId: number): Observable<ICountryCore> {
-    return this.httpClient
+    return this._httpClient
       .get<ICountryCore>(this.BASE_URL + 'get-country/' + ICountryId)
       .pipe(
         tap((_) => console.log('got Country')),
@@ -37,7 +37,7 @@ export class CountryService {
   }
 
   addCountry(ICountry: ICountry): Observable<ICountry> {
-    return this.httpClient
+    return this._httpClient
       .post<ICountry>(
         this.BASE_URL + 'create-country',
         ICountry,
@@ -50,7 +50,7 @@ export class CountryService {
   }
 
   updateCountry(ICountry: ICountryCore, ICountryId: number): Observable<any> {
-    return this.httpClient
+    return this._httpClient
       .put(
         this.BASE_URL + 'update-country/' + ICountryId,
         ICountry,
@@ -63,7 +63,7 @@ export class CountryService {
   }
 
   deleteCountry(ICountryId: number): Observable<ICountry> {
-    return this.httpClient
+    return this._httpClient
       .delete<ICountry>(
         this.BASE_URL + 'delete/' + ICountryId,
         this.httpOptions

@@ -18,17 +18,17 @@ export class CategoryService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   getCategories(pageNumber: number): Observable<ICategoryCore[]> {
-    return this.httpClient.get<ICategoryCore[]>(
+    return this._httpClient.get<ICategoryCore[]>(
       this.BASE_URL + 'get-categories',
       { params: { page: pageNumber } }
     );
   }
 
   getCategory(ICategoryId: number): Observable<ICategoryCore> {
-    return this.httpClient
+    return this._httpClient
       .get<ICategoryCore>(this.BASE_URL + 'get-category/' + ICategoryId)
       .pipe(
         tap((_) => console.log('got Category')),
@@ -37,7 +37,7 @@ export class CategoryService {
   }
 
   addCategory(ICategory: ICategory): Observable<ICategory> {
-    return this.httpClient
+    return this._httpClient
       .post<ICategory>(
         this.BASE_URL + 'create-category',
         ICategory,
@@ -53,7 +53,7 @@ export class CategoryService {
     ICategory: ICategoryCore,
     ICategoryId: number
   ): Observable<any> {
-    return this.httpClient
+    return this._httpClient
       .put(
         this.BASE_URL + 'update-category/' + ICategoryId,
         ICategory,
@@ -66,7 +66,7 @@ export class CategoryService {
   }
 
   deleteCategory(ICategoryId: number): Observable<ICategory> {
-    return this.httpClient
+    return this._httpClient
       .delete<ICategory>(
         this.BASE_URL + 'delete/' + ICategoryId,
         this.httpOptions

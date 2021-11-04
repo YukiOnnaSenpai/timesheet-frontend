@@ -20,9 +20,8 @@
             </tr>
             <tbody>
                 <tr *ngFor="let row of dataSource">
-                    <!-- <td *ngFor="let data of row" [ngClass]="getCellClass(data.date, data.hours)"> -->
-                    <td *ngFor="let data of row"
-                        [ngClass]="{'disable': data.date > this.endDate, 'previous': data.date < this.startDate, 'positive': data.hours >= 7.5, 'negative': data.hours > 0 && data.hours < 7.5}">
+                        <td *ngFor="let data of row"
+                        [ngClass]="{'disable': data.date > originalEndDate, 'previous': data.date < originalStartDate, 'positive': data.hours >= 7.5, 'negative': data.hours > 0 && data.hours < 7.5}">
                         <div class="date">
                             <span>{{data.date | date:'dd'}}.</span>
                         </div>

@@ -18,16 +18,16 @@ export class RoleService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   getRoles(pageNumber: number): Observable<IRoleCore[]> {
-    return this.httpClient.get<IRoleCore[]>(this.BASE_URL + 'get-roles', {
+    return this._httpClient.get<IRoleCore[]>(this.BASE_URL + 'get-roles', {
       params: { page: pageNumber },
     });
   }
 
   getRole(IRoleId: number): Observable<IRoleCore> {
-    return this.httpClient
+    return this._httpClient
       .get<IRoleCore>(this.BASE_URL + 'get-role/' + IRoleId)
       .pipe(
         tap((_) => console.log('got Role')),
@@ -36,7 +36,7 @@ export class RoleService {
   }
 
   addRole(IRole: IRole): Observable<IRole> {
-    return this.httpClient
+    return this._httpClient
       .post<IRole>(this.BASE_URL + 'create-role', IRole, this.httpOptions)
       .pipe(
         tap((newIRole: IRole) => console.log(newIRole)),
@@ -45,7 +45,7 @@ export class RoleService {
   }
 
   updateRole(IRole: IRoleCore, IRoleId: number): Observable<any> {
-    return this.httpClient
+    return this._httpClient
       .put(this.BASE_URL + 'update-role/' + IRoleId, IRole, this.httpOptions)
       .pipe(
         tap((_) => console.log('updated Role')),
@@ -54,7 +54,7 @@ export class RoleService {
   }
 
   deleteRole(IRoleId: number): Observable<IRole> {
-    return this.httpClient
+    return this._httpClient
       .delete<IRole>(this.BASE_URL + 'delete/' + IRoleId, this.httpOptions)
       .pipe(
         tap((_) => console.log(`deleted Role`)),

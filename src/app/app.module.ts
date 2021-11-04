@@ -1,3 +1,4 @@
+import { CdkTableModule } from '@angular/cdk/table';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -34,7 +35,8 @@ import { AccordionComponent } from './components/util/accordion/accordion.compon
 import { AlphaSortComponent } from './components/util/alpha-sort/alpha-sort.component';
 import { FormComponent } from './components/util/form/form.component';
 import { PaginationComponent } from './components/util/pagination/pagination.component';
-import { SearchFilterPipePipe } from './components/util/pipes/search-filter-pipe.pipe';
+import { SearchFilterPipe } from './components/util/pipes/search-filter/search-filter.pipe';
+import { StringToDatePipe } from './components/util/pipes/string-to-date/string-to-date.pipe';
 import { SearchboxComponent } from './components/util/searchbox/searchbox.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { DateService } from './services/date/date.service';
@@ -53,8 +55,9 @@ import { DateService } from './services/date/date.service';
     SearchboxComponent,
     AccordionComponent,
     PaginationComponent,
-    SearchFilterPipePipe,
     FormComponent,
+    SearchFilterPipe,
+    StringToDatePipe,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +83,7 @@ import { DateService } from './services/date/date.service';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    CdkTableModule,
   ],
   providers: [
     TitleCasePipe,

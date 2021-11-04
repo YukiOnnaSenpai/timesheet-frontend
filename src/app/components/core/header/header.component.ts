@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   cardNames = [
@@ -12,13 +12,15 @@ export class HeaderComponent implements OnInit {
     { name: 'Projects', link: 'projects' },
     { name: 'Categories', link: 'categories' },
     { name: 'Team members', link: 'team-members' },
-    { name: 'Reports', link: 'reports' }];
-  userActions = [{ name: 'Change password', link: '' }, { name: 'Settings', link: '' }, { name: 'Export all data', link: '' }];
+    { name: 'Reports', link: 'reports' },
+  ];
+  userActions = [
+    { name: 'Change password', link: '' },
+    { name: 'Settings', link: '' },
+    { name: 'Export all data', link: '' },
+  ];
 
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

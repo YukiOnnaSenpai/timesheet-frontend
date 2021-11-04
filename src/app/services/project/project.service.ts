@@ -18,16 +18,19 @@ export class ProjectService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   getProjects(pageNumber: number): Observable<IProjectCore[]> {
-    return this.httpClient.get<IProjectCore[]>(this.BASE_URL + 'get-projects', {
-      params: { page: pageNumber },
-    });
+    return this._httpClient.get<IProjectCore[]>(
+      this.BASE_URL + 'get-projects',
+      {
+        params: { page: pageNumber },
+      }
+    );
   }
 
   getProject(IProjectId: number): Observable<IProjectCore> {
-    return this.httpClient
+    return this._httpClient
       .get<IProjectCore>(this.BASE_URL + 'get-project/' + IProjectId)
       .pipe(
         tap((_) => console.log('got Project')),
@@ -36,7 +39,7 @@ export class ProjectService {
   }
 
   addProject(IProject: IProject): Observable<IProject> {
-    return this.httpClient
+    return this._httpClient
       .post<IProject>(
         this.BASE_URL + 'create-project',
         IProject,
@@ -52,7 +55,7 @@ export class ProjectService {
     IProjectUpdate: IProjectCore,
     IProjectUpdateId: number
   ): Observable<any> {
-    return this.httpClient
+    return this._httpClient
       .put(
         this.BASE_URL + 'update-project/' + IProjectUpdateId,
         IProjectUpdate,
@@ -65,7 +68,7 @@ export class ProjectService {
   }
 
   deleteProject(IProjectId: number): Observable<IProject> {
-    return this.httpClient
+    return this._httpClient
       .delete<IProject>(
         this.BASE_URL + 'delete/' + IProjectId,
         this.httpOptions

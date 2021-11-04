@@ -22,13 +22,13 @@ export class TimeSheetService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   getTimeSheetsByMonth(
     startDate: Date,
     endDate: Date
   ): Observable<ITimeSheetCore[]> {
-    return this.httpClient.get<ITimeSheetCore[]>(this.BASE_URL + 'getByMonth', {
+    return this._httpClient.get<ITimeSheetCore[]>(this.BASE_URL + 'getByMonth', {
       params: new HttpParams()
         .set('startDate', startDate.toString())
         .set('endDate', endDate.toString()),
@@ -36,7 +36,7 @@ export class TimeSheetService {
   }
 
   getTimeSheetById(ITimeSheetId: string): Observable<ITimeSheetCore> {
-    return this.httpClient
+    return this._httpClient
       .get<ITimeSheetCore>(this.BASE_URL + 'get/' + ITimeSheetId)
       .pipe(
         tap((_) => console.log('got TimeSheet by Id')),
@@ -45,7 +45,7 @@ export class TimeSheetService {
   }
 
   getTimeSheetByDay(date: Date): Observable<ITimeSheetCore> {
-    return this.httpClient
+    return this._httpClient
       .get<TimeSheetCore>(this.BASE_URL + 'getByDay/' + date)
       .pipe(
         tap((_) => console.log('got TimeSheet by date')),
@@ -54,7 +54,7 @@ export class TimeSheetService {
   }
 
   addTimeSheet(ITimeSheet: ITimeSheet): Observable<ITimeSheet> {
-    return this.httpClient
+    return this._httpClient
       .post<ITimeSheet>(
         this.BASE_URL + 'create-ts',
         ITimeSheet,
@@ -70,7 +70,7 @@ export class TimeSheetService {
     ITimeSheet: ITimeSheetCore,
     ITimeSheetId: number
   ): Observable<any> {
-    return this.httpClient
+    return this._httpClient
       .put(
         this.BASE_URL + 'update-ts/' + ITimeSheetId,
         ITimeSheet,

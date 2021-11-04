@@ -3,309 +3,85 @@
         <h2><i class="ico timesheet"></i>TimeSheet</h2>
         <div class="grey-box-wrap">
             <div class="top">
-                <a href="javascript:;" class="prev"><i class="zmdi zmdi-chevron-left"></i>previous week</a>
-                <span class="center">February 04 - February 10, 2013 (week 6)</span>
-                <a href="javascript:;" class="next">next week<i class="zmdi zmdi-chevron-right"></i></a>
+                <button mat-button (click)="getPreviousWeek()" class="prev">
+                    <mat-icon aria-hidden="false" aria-label="chevron left">chevron_left</mat-icon> previous month
+                </button>
+                <span class="center">{{ firstDayOfTheWeek | date:'MMMM dd' }} - {{ lastDayOfTheWeek | date:'MMMM dd,
+                    yyyy' }} (week {{lastDayOfTheWeek | date:'ww'}})</span>
+                <button mat-button (click)="getNextWeek()" class="next">next month <mat-icon aria-hidden="false"
+                        aria-label="navigate next">navigate_next</mat-icon></button>
             </div>
             <div class="bottom">
                 <ul class="days">
-                    <li>
+                    <li *ngFor="let day of week"
+                        [ngClass]="{'active': (day | date:'shortDate') == (selectedDate | date:'shortDate'), 'last': day == lastDayOfTheWeek}">
                         <a href="javascript:;">
-                            <b>Feb 04</b>
-                            <!-- <i>7.5</i> -->
-                            <span>monday</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <b>Feb 06</b>
-                            <!-- <i>7.5</i> -->
-                            <span>tuesday</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <b>Feb 06</b>
-                            <!-- <i>7.5</i> -->
-                            <span>wednesday</span>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="javascript:;">
-                            <b>Feb 07</b>
-                            <!-- <i>7.5</i> -->
-                            <span>thursday</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <b>Feb 08</b>
-                            <!-- <i>7.5</i> -->
-                            <span>friday</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <b>Feb 09</b>
-                            <!-- <i>0.0</i> -->
-                            <span>saturday</span>
-                        </a>
-                    </li>
-                    <li class="last">
-                        <a href="javascript:;">
-                            <b>Feb 10</b>
-                            <!-- <i>0.0</i> -->
-                            <span>sunday</span>
+                            <b>{{ day | date:'ccc dd'}}</b>
+                            <span>{{ day | date:'EEEE'}}</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-        <table class="default-table">
-            <tr>
-                <th>
-                    Client <em>*</em>
-                </th>
-                <th>
-                    Project <em>*</em>
-                </th>
-                <th>
-                    Category <em>*</em>
-                </th>
-                <th>Description</th>
-                <th class="small">
-                    Time <em>*</em>
-                </th>
-                <th class="small">Overtime</th>
-            </tr>
-            <tr>
-                <td>
-                    <select>
-                        <option>Choose client</option>
-                        <option>Client 1</option>
-                        <option>Client 2</option>
+        <table mat-table class="default-table" [dataSource]="form.controls.tableFields.value" [formGroup]="form"
+            [trackBy]="trackByIndex">
+            <ng-container matColumnDef="client" [formArrayName]="'tableFields'">
+                <th mat-header-cell *matHeaderCellDef>Client <em>*</em></th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i" trackBy:trackByFn>
+                    <select mat-select [formControlName]="'clientId'">
+                        <option mat-option value="">Choose client</option>
+                        <option mat-option *ngFor="let client of clients" [value]="client.id" required>
+                            {{client.name}}
+                        </option>
                     </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose project</option>
-                        <option>Project 1</option>
-                        <option>Project 2</option>
+            </ng-container>
+            <ng-container matColumnDef="project" [formArrayName]="'tableFields'">
+                <th mat-header-cell *matHeaderCellDef>Project <em>*</em></th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i" trackBy:trackByFn>
+                    <select mat-select [formControlName]="'projectId'">
+                        <option mat-option value="">Choose project</option>
+                        <option mat-option *ngFor="let project of projects" [value]="project.id" required>
+                            {{project.name}}
+                        </option>
                     </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose category</option>
-                        <option>Front-End Development</option>
-                        <option>Design</option>
+            </ng-container>
+            <ng-container matColumnDef="category" [formArrayName]="'tableFields'">
+                <th mat-header-cell *matHeaderCellDef>Category<em>*</em></th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i" trackBy:trackByFn>
+                    <select mat-select [formControlName]="'categoryId'">
+                        <option mat-option value="">Choose category</option>
+                        <option mat-option *ngFor="let category of categories" [value]="category.id" required>
+                            {{category.name}}
+                        </option>
                     </select>
-                </td>
-                <td>
-                    <input type="text" class="in-text medium" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <select>
-                        <option>Choose client</option>
-                        <option>Client 1</option>
-                        <option>Client 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose project</option>
-                        <option>Project 1</option>
-                        <option>Project 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose category</option>
-                        <option>Front-End Development</option>
-                        <option>Design</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="text" class="in-text medium" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <select>
-                        <option>Choose client</option>
-                        <option>Client 1</option>
-                        <option>Client 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose project</option>
-                        <option>Project 1</option>
-                        <option>Project 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose category</option>
-                        <option>Front-End Development</option>
-                        <option>Design</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="text" class="in-text medium" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <select>
-                        <option>Choose client</option>
-                        <option>Client 1</option>
-                        <option>Client 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose project</option>
-                        <option>Project 1</option>
-                        <option>Project 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose category</option>
-                        <option>Front-End Development</option>
-                        <option>Design</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="text" class="in-text medium" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <select>
-                        <option>Choose client</option>
-                        <option>Client 1</option>
-                        <option>Client 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose project</option>
-                        <option>Project 1</option>
-                        <option>Project 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose category</option>
-                        <option>Front-End Development</option>
-                        <option>Design</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="text" class="in-text medium" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <select>
-                        <option>Choose client</option>
-                        <option>Client 1</option>
-                        <option>Client 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose project</option>
-                        <option>Project 1</option>
-                        <option>Project 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose category</option>
-                        <option>Front-End Development</option>
-                        <option>Design</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="text" class="in-text medium" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <select>
-                        <option>Choose client</option>
-                        <option>Client 1</option>
-                        <option>Client 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose project</option>
-                        <option>Project 1</option>
-                        <option>Project 2</option>
-                    </select>
-                </td>
-                <td>
-                    <select>
-                        <option>Choose category</option>
-                        <option>Front-End Development</option>
-                        <option>Design</option>
-                    </select>
-                </td>
-                <td>
-                    <input type="text" class="in-text medium" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-                <td class="small">
-                    <input type="text" class="in-text xsmall" />
-                </td>
-            </tr>
+            </ng-container>
+            <ng-container matColumnDef="description" [formArrayName]="'tableFields'">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i" trackBy:trackByFn>
+                    <input mat-input type="text" class="in-text medium" [formControlName]="'description'" />
+            </ng-container>
+            <ng-container matColumnDef="time" [formArrayName]="'tableFields'" class="small">
+                <th mat-header-cell *matHeaderCellDef>Time<em>*</em></th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i" trackBy:trackByFn>
+                    <input mat-input type="text" class="in-text xsmall" [formControlName]="'time'"/>
+            </ng-container>
+            <ng-container matColumnDef="overTime" [formArrayName]="'tableFields'" class="small">
+                <th mat-header-cell *matHeaderCellDef>Overtime</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i" trackBy:trackByFn>
+                    <input mat-input type="text" class="in-text xsmall" [formControlName]="'overTime'" />
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         <div class="total">
             <a href="index.html"><i></i>back to monthly view</a>
-            <span>Total hours: <em>7.5</em></span>
+            <span>Total hours: <em>{{time}}</em></span>
         </div>
-    </section>			
+        <div class="buttons">
+            <div class="inner">
+                <button type="submit" class="btn green" (click)="save()">Save changes</button>
+            </div>
+        </div>
+    </section>
 </div>

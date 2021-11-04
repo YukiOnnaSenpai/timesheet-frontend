@@ -26,11 +26,16 @@ export class ReportsComponent implements OnInit {
   );
   dataSource: MatTableDataSource<ITimeSheetCore> | any;
   queryString: IReports[] = [{ name: 'page', value: '1' }];
-  displayedColumns: string[] = ['Date','Team member','Projects','Categories','Description','Time'];
+  displayedColumns: string[] = [
+    'Date',
+    'Team member',
+    'Projects',
+    'Categories',
+    'Description',
+    'Time',
+  ];
 
-  constructor(
-    private reportsService: ReportsService
-  ) {}
+  constructor(private _reportsService: ReportsService) {}
 
   ngOnInit(): void {
     this.flag = 4;
@@ -38,8 +43,8 @@ export class ReportsComponent implements OnInit {
   }
 
   getReports(queryString: IReports[]) {
-    this.reportsService.getReports(queryString).subscribe((records) => {
-      records.forEach(one => this.reportTotalHours += one.time);
+    this._reportsService.getReports(queryString).subscribe((records) => {
+      records.forEach((one) => (this.reportTotalHours += one.time));
       this.dataSource = new MatTableDataSource(records);
     });
   }

@@ -18,16 +18,16 @@ export class TeamMemberService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   getTeamMembers(pageNumber: number): Observable<ITeamMemberCore[]> {
-    return this.httpClient.get<ITeamMemberCore[]>(this.BASE_URL + 'get-tms', {
+    return this._httpClient.get<ITeamMemberCore[]>(this.BASE_URL + 'get-tms', {
       params: { page: pageNumber },
     });
   }
 
   getTeamMember(ITeamMemberId: number): Observable<ITeamMemberCore> {
-    return this.httpClient
+    return this._httpClient
       .get<ITeamMemberCore>(this.BASE_URL + 'get-tm/' + ITeamMemberId)
       .pipe(
         tap((_) => console.log('got TeamMember')),
@@ -36,7 +36,7 @@ export class TeamMemberService {
   }
 
   addTeamMember(ITeamMember: ITeamMember): Observable<ITeamMember> {
-    return this.httpClient
+    return this._httpClient
       .post<ITeamMember>(
         this.BASE_URL + 'create-tm',
         ITeamMember,
@@ -52,7 +52,7 @@ export class TeamMemberService {
     ITeamMember: ITeamMemberCore,
     ITeamMemberId: number
   ): Observable<any> {
-    return this.httpClient
+    return this._httpClient
       .put(
         this.BASE_URL + 'update-member/' + ITeamMemberId,
         ITeamMember,
@@ -65,7 +65,7 @@ export class TeamMemberService {
   }
 
   deleteTeamMember(ITeamMemberId: number): Observable<ITeamMember> {
-    return this.httpClient
+    return this._httpClient
       .delete<ITeamMember>(
         this.BASE_URL + 'delete/' + ITeamMemberId,
         this.httpOptions

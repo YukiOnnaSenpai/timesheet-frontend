@@ -9,10 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'timesheet';
 
-  constructor(public http: HttpClient) {}
+  constructor(public _http: HttpClient) {}
 
   public connectServer() {
-    this.http.get('url')
+    this._http.get('url')
       .subscribe(
         data => console.log(data),
         err => console.log(err)

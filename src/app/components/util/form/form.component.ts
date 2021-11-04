@@ -36,12 +36,12 @@ export class FormComponent implements OnInit {
   @Output() cancelEvent = new EventEmitter<string>();
 
   constructor(
-    private countryService: CountryService,
-    private teamMemberService: TeamMemberService,
-    private clientService: ClientService,
-    private roleService: RoleService,
-    private projectService: ProjectService,
-    private categoryService: CategoryService
+    private _countryService: CountryService,
+    private _teamMemberService: TeamMemberService,
+    private _clientService: ClientService,
+    private _roleService: RoleService,
+    private _projectService: ProjectService,
+    private _categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class FormComponent implements OnInit {
       this.getTeamMembers(1);
       this.getClients(1);
       this.data as IProjectCore;
-    } else if(this.flag == 3){
+    } else if (this.flag == 3) {
       this.getRoles(1);
       this.data as ITeamMemberCore;
     } else {
@@ -66,29 +66,29 @@ export class FormComponent implements OnInit {
   save() {
     if (this.parentComponentName === 'accordion') {
       if (this.flag == 1) {
-        this.clientService
+        this._clientService
           .updateClient(this.data as IClientCore, this.data.id)
           .subscribe((data) => (this.data = data as IClientCore));
       } else if (this.flag == 2) {
-        this.projectService
+        this._projectService
           .updateProject(this.data as IProjectCore, this.data.id)
           .subscribe((data) => (this.data = data as IProjectCore));
       } else {
-        this.teamMemberService
+        this._teamMemberService
           .updateTeamMember(this.data as ITeamMemberCore, this.data.id)
           .subscribe((data) => (this.data = data as ITeamMemberCore));
       }
     } else {
       if (this.flag == 1) {
-        this.clientService
+        this._clientService
           .addClient(this.data as IClient)
           .subscribe((data) => (this.data = data));
       } else if (this.flag == 2) {
-        this.projectService
+        this._projectService
           .addProject(this.data as IProject)
           .subscribe((data) => (this.data = data));
       } else {
-        this.teamMemberService
+        this._teamMemberService
           .addTeamMember(this.data as ITeamMember)
           .subscribe((data) => (this.data = data));
       }
@@ -99,11 +99,11 @@ export class FormComponent implements OnInit {
 
   delete() {
     if (this.flag == 1) {
-      this.clientService.deleteClient(this.data.id).subscribe();
+      this._clientService.deleteClient(this.data.id).subscribe();
     } else if (this.flag == 2) {
-      this.projectService.deleteProject(this.data.id).subscribe();
-    } else { 
-      this.teamMemberService.deleteTeamMember(this.data.id).subscribe();
+      this._projectService.deleteProject(this.data.id).subscribe();
+    } else {
+      this._teamMemberService.deleteTeamMember(this.data.id).subscribe();
     }
     this.ngOnInit();
   }
@@ -119,34 +119,38 @@ export class FormComponent implements OnInit {
   search() {}
 
   getCountries(pageNumber: number): void {
-    this.countryService
+    this._countryService
       .getCountries(pageNumber)
       .subscribe((countries) => (this.countries = countries));
   }
 
   getTeamMembers(pageNumber: number) {
-    this.teamMemberService
+    this._teamMemberService
       .getTeamMembers(pageNumber)
       .subscribe((teamMembers) => (this.teamMembers = teamMembers));
   }
 
   getClients(pageNumber: number) {
-    this.clientService
+    this._clientService
       .getClients(pageNumber)
       .subscribe((clients) => (this.clients = clients));
   }
 
   getRoles(pageNumber: number) {
-    this.roleService
+    this._roleService
       .getRoles(pageNumber)
       .subscribe((roles) => (this.roles = roles));
   }
 
   getProjects(pageNumber: number) {
-    this.projectService.getProjects(pageNumber).subscribe(projects => this.projects = projects);
+    this._projectService
+      .getProjects(pageNumber)
+      .subscribe((projects) => (this.projects = projects));
   }
 
   getCategories(pageNumber: number) {
-    this.categoryService.getCategories(pageNumber).subscribe(categories => this.categories = categories);
+    this._categoryService
+      .getCategories(pageNumber)
+      .subscribe((categories) => (this.categories = categories));
   }
 }

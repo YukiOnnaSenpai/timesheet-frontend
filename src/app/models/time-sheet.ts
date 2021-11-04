@@ -44,6 +44,7 @@ export class TimeSheet implements ITimeSheet {
 export interface ITimeSheetCore extends ITimeSheet {
   id: string;
   teamMemberId: string;
+  date?: Date;
   hours?: number;
   client?: IClientCore;
   category?: ICategoryCore;
@@ -54,6 +55,7 @@ export interface ITimeSheetCore extends ITimeSheet {
 export class TimeSheetCore extends TimeSheet implements ITimeSheetCore {
   public id: string;
   public teamMemberId: string;
+  public date?: Date;
   public hours?: number;
   public client?: IClientCore;
   public category?: ICategoryCore;
@@ -67,6 +69,7 @@ export class TimeSheetCore extends TimeSheet implements ITimeSheetCore {
     categoryId: string,
     description: string,
     time: number,
+    date: Date,
     overTime: number,
     created: Date,
     teamMemberId: string,
@@ -87,6 +90,7 @@ export class TimeSheetCore extends TimeSheet implements ITimeSheetCore {
     );
     this.id = id;
     this.teamMemberId = teamMemberId;
+    this.date = date;
     this.hours = hours;
     this.client = client;
     this.category = category;

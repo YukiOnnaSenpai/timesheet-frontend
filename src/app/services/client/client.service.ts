@@ -18,16 +18,16 @@ export class ClientService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   getClients(pageNumber: number): Observable<IClientCore[]> {
-    return this.httpClient.get<IClientCore[]>(this.BASE_URL + 'get-clients', {
+    return this._httpClient.get<IClientCore[]>(this.BASE_URL + 'get-clients', {
       params: { page: pageNumber },
     });
   }
 
   getClient(IClientId: number): Observable<IClientCore> {
-    return this.httpClient
+    return this._httpClient
       .get<IClientCore>(this.BASE_URL + 'get-client/' + IClientId)
       .pipe(
         tap((_) => console.log('got Client')),
@@ -36,7 +36,7 @@ export class ClientService {
   }
 
   addClient(IClient: IClient): Observable<IClient> {
-    return this.httpClient
+    return this._httpClient
       .post<IClient>(this.BASE_URL + 'create-client', IClient, this.httpOptions)
       .pipe(
         tap((newIClient: IClient) => console.log(newIClient)),
@@ -45,7 +45,7 @@ export class ClientService {
   }
 
   updateClient(IClient: IClientCore, IClientId: number): Observable<any> {
-    return this.httpClient
+    return this._httpClient
       .put(
         this.BASE_URL + 'update-client/' + IClientId,
         IClient,
@@ -58,7 +58,7 @@ export class ClientService {
   }
 
   deleteClient(IClientId: number): Observable<IClient> {
-    return this.httpClient
+    return this._httpClient
       .delete<IClient>(this.BASE_URL + 'delete/' + IClientId, this.httpOptions)
       .pipe(
         tap((_) => console.log(`deleted Client`)),
