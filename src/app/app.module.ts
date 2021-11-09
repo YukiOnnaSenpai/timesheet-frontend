@@ -1,4 +1,3 @@
-import { CdkTableModule } from '@angular/cdk/table';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -83,7 +82,6 @@ import { DateService } from './services/date/date.service';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    CdkTableModule,
   ],
   providers: [
     TitleCasePipe,

@@ -25,13 +25,13 @@ export class TimeSheetService {
   constructor(private _httpClient: HttpClient) {}
 
   getTimeSheetsByMonth(
-    startDate: Date,
-    endDate: Date
+    startDate: string,
+    endDate: string
   ): Observable<ITimeSheetCore[]> {
     return this._httpClient.get<ITimeSheetCore[]>(this.BASE_URL + 'getByMonth', {
       params: new HttpParams()
-        .set('startDate', startDate.toString())
-        .set('endDate', endDate.toString()),
+        .set('startDate', startDate)
+        .set('endDate', endDate),
     });
   }
 
@@ -44,12 +44,12 @@ export class TimeSheetService {
       );
   }
 
-  getTimeSheetByDay(date: Date): Observable<ITimeSheetCore> {
+  getTimeSheetByDay(date: Date): Observable<ITimeSheetCore[]> {
     return this._httpClient
-      .get<TimeSheetCore>(this.BASE_URL + 'getByDay/' + date)
+      .get<TimeSheetCore[]>(this.BASE_URL + 'getByDay/' + date)
       .pipe(
         tap((_) => console.log('got TimeSheet by date')),
-        catchError(this.handleError<ITimeSheetCore>('get one by day'))
+        catchError(this.handleError<ITimeSheetCore[]>('get one by day'))
       );
   }
 
@@ -68,7 +68,7 @@ export class TimeSheetService {
 
   updateTimeSheet(
     ITimeSheet: ITimeSheetCore,
-    ITimeSheetId: number
+    ITimeSheetId: string
   ): Observable<any> {
     return this._httpClient
       .put(

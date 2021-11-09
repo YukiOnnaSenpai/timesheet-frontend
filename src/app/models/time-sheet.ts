@@ -42,8 +42,8 @@ export class TimeSheet implements ITimeSheet {
 }
 
 export interface ITimeSheetCore extends ITimeSheet {
-  id: string;
-  teamMemberId: string;
+  id?: string;
+  teamMemberId?: string;
   date?: Date;
   hours?: number;
   client?: IClientCore;
@@ -53,8 +53,8 @@ export interface ITimeSheetCore extends ITimeSheet {
 }
 
 export class TimeSheetCore extends TimeSheet implements ITimeSheetCore {
-  public id: string;
-  public teamMemberId: string;
+  public id?: string;
+  public teamMemberId?: string;
   public date?: Date;
   public hours?: number;
   public client?: IClientCore;

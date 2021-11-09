@@ -4,18 +4,18 @@
         <div class="grey-box-wrap">
             <div class="top">
                 <button mat-button (click)="getPreviousWeek()" class="prev">
-                    <mat-icon aria-hidden="false" aria-label="chevron left">chevron_left</mat-icon> previous month
+                    <mat-icon aria-hidden="false" aria-label="chevron left">chevron_left</mat-icon> previous week
                 </button>
-                <span class="center">{{ firstDayOfTheWeek | date:'MMMM dd' }} - {{ lastDayOfTheWeek | date:'MMMM dd,
-                    yyyy' }} (week {{lastDayOfTheWeek | date:'ww'}})</span>
-                <button mat-button (click)="getNextWeek()" class="next">next month <mat-icon aria-hidden="false"
+                <span class="center">{{ selectedDate.startingDateOfTheWeek | date:'MMMM dd' }} - {{ selectedDate.endingDateOfTheWeek | date:'MMMM dd,
+                    yyyy' }} (week {{selectedDate.endingDateOfTheWeek | date:'ww'}})</span>
+                <button mat-button (click)="getNextWeek()" class="next">next week <mat-icon aria-hidden="false"
                         aria-label="navigate next">navigate_next</mat-icon></button>
             </div>
             <div class="bottom">
                 <ul class="days">
-                    <li *ngFor="let day of week"
-                        [ngClass]="{'active': (day | date:'shortDate') == (selectedDate | date:'shortDate'), 'last': day == lastDayOfTheWeek}">
-                        <a href="javascript:;">
+                    <li *ngFor="let day of selectedDate.week"
+                        [ngClass]="{'active': (day | date:'shortDate') == (selectedDate.date | date:'shortDate'), 'last': day == selectedDate.endingDateOfTheWeek}">
+                        <a (click)="setDifferentDate(day)">
                             <b>{{ day | date:'ccc dd'}}</b>
                             <span>{{ day | date:'EEEE'}}</span>
                         </a>
@@ -63,7 +63,7 @@
             <ng-container matColumnDef="time" [formArrayName]="'tableFields'" class="small">
                 <th mat-header-cell *matHeaderCellDef>Time<em>*</em></th>
                 <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i" trackBy:trackByFn>
-                    <input mat-input type="text" class="in-text xsmall" [formControlName]="'time'"/>
+                    <input mat-input type="text" class="in-text xsmall" [formControlName]="'time'" />
             </ng-container>
             <ng-container matColumnDef="overTime" [formArrayName]="'tableFields'" class="small">
                 <th mat-header-cell *matHeaderCellDef>Overtime</th>
@@ -75,12 +75,12 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         <div class="total">
-            <a href="index.html"><i></i>back to monthly view</a>
+            <a href="index.html" (click)="resetActiveDate()"><i></i>back to monthly view</a>
             <span>Total hours: <em>{{time}}</em></span>
         </div>
         <div class="buttons">
             <div class="inner">
-                <button type="submit" class="btn green" (click)="save()">Save changes</button>
+                <button type="submit" class="btn green float-right" (click)="save()">Save changes</button>
             </div>
         </div>
     </section>

@@ -1,6 +1,6 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
+import { CustomDate, ICustomDate } from 'src/app/models/custom-date';
+import { DateService } from 'src/app/services/date/date.service';
 import { TimeSheetService } from 'src/app/services/time-sheet/time-sheet.service';
 
 @Component({
@@ -21,56 +21,39 @@ export class CalendarComponent implements OnInit {
   displayedColumnsMobile = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
   dataSource: any[] = [];
   totalHours: number = 0;
-  currentDate: Date = new Date();
-  startDate: Date = new Date(
-    this.currentDate.getFullYear(),
-    this.currentDate.getMonth(),
-    1
-  );
-  originalStartDate: Date = new Date();
-  endDate: Date = new Date(
-    this.currentDate.getFullYear(),
-    this.currentDate.getMonth() + 1,
-    0
-  );
-  originalEndDate: Date = new Date();
+  currentDate!: ICustomDate;
+  title: string = '';
 
   constructor(
     private _timeSheetService: TimeSheetService,
-    private _datePipe: DatePipe
-  ) {
-    this.originalStartDate = new Date(
-      moment(new Date()).toDate().getFullYear(),
-      moment(new Date()).toDate().getMonth(),
-      1
-    );
-    this.originalEndDate = new Date(
-      moment(new Date()).toDate().getFullYear(),
-      moment(new Date()).toDate().getMonth() + 1,
-      0
-    );
-  }
+    private _dateService: DateService
+  ) {}
 
   ngOnInit(): void {
+    this._dateService.currentDate.subscribe((element) => {
+      this.currentDate = element;
+    });
     this.loadData();
-    this.currentDate = moment(new Date()).toDate();
-  }
-
-  transformDate(date: Date) {
-    return this._datePipe.transform(date, 'dd-MM-yyyy') || date;
   }
 
   loadData() {
     this.totalHours = 0;
+    this.title = this._dateService.getMonthsNameAndYear(
+      this.currentDate.date
+    ) as string;
     this._timeSheetService
       .getTimeSheetsByMonth(
-        this.transformDate(this.startDate) as Date,
-        this.transformDate(this.endDate) as Date
+        this._dateService.formatDate(
+          this.currentDate.startingDateOfTheMonth as Date
+        ) as string,
+        this._dateService.formatDate(
+          this.currentDate.endingDateOfTheMonth as Date
+        ) as string
       )
       .subscribe((timesheets) => {
-        timesheets.forEach((one) => {
-          this.totalHours += one.hours || 0;
-          one.date = new Date(one.date as Date);
+        timesheets.forEach((entry) => {
+          this.totalHours += entry.hours || 0;
+          entry.date = new Date(entry.date as Date);
         });
         this.dataSource = Array(Math.ceil(timesheets.length / 7))
           .fill('')
@@ -81,16 +64,16 @@ export class CalendarComponent implements OnInit {
   }
 
   getPreviousMonth() {
-    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
-    this.startDate.setMonth(this.startDate.getMonth() - 1);
-    this.endDate.setMonth(this.endDate.getMonth() - 1);
+    this._dateService.getPreviousMonth();
     this.loadData();
   }
 
   getNextMonth() {
-    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
-    this.startDate.setMonth(this.startDate.getMonth() + 1);
-    this.endDate.setMonth(this.endDate.getMonth() + 1);
+    this._dateService.getNextMonth();
     this.loadData();
+  }
+
+  setActiveDate(selectedDate: Date) {
+    this._dateService.changeActiveDate(new CustomDate(selectedDate));
   }
 }

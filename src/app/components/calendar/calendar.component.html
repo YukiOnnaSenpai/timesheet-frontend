@@ -6,7 +6,7 @@
                 <button mat-button (click)="getPreviousMonth()" class="prev">
                     <mat-icon aria-hidden="false" aria-label="chevron left">chevron_left</mat-icon> previous month
                 </button>
-                <span class="center">{{ currentDate | date:'LLLL,YYYY' }}</span>
+                <span class="center">{{ title }}</span>
                 <button mat-button (click)="getNextMonth()" class="next">next month <mat-icon aria-hidden="false"
                         aria-label="navigate next">navigate_next</mat-icon></button>
             </div>
@@ -21,12 +21,12 @@
             <tbody>
                 <tr *ngFor="let row of dataSource">
                         <td *ngFor="let data of row"
-                        [ngClass]="{'disable': data.date > originalEndDate, 'previous': data.date < originalStartDate, 'positive': data.hours >= 7.5, 'negative': data.hours > 0 && data.hours < 7.5}">
+                        [ngClass]="{'disable': data.date > (currentDate.currnetMonthEndingDate ?? currentDate.date), 'previous': data.date < (currentDate.curentMonthStartingDate ?? currentDate.date), 'positive': data.hours >= 7.5, 'negative': data.hours > 0 && data.hours < 7.5}">
                         <div class="date">
                             <span>{{data.date | date:'dd'}}.</span>
                         </div>
                         <div class="hours">
-                            <a routerLink="day" routerLinkActive="active">
+                            <a (click)="setActiveDate(data.date)" routerLink="day" routerLinkActive="active">
                                 Hours: <span>{{data.hours}}</span>
                             </a>
                         </div>
