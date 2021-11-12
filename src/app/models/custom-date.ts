@@ -24,8 +24,6 @@ export class CustomDate implements ICustomDate {
   public currnetMonthEndingDate?: Date;
 
   constructor(startingDate: Date) {
-    //   console.log('constructor', startingDate);
-    // this.date = moment(new Date()).toDate();
     this.date = new Date(startingDate);
     this.currentDate = moment(new Date()).toDate();
     this.week = this.calculateDaysOfTheWeek(startingDate);
@@ -64,37 +62,5 @@ export class CustomDate implements ICustomDate {
       weekDates.push(new Date(date.setDate(startDate.getDate() + i)));
     }
     return weekDates;
-  }
-
-  getCurrentDate(): Date {
-    return this.currentDate as Date;
-  }
-
-  getDate(): Date {
-    return this.date as Date;
-  }
-
-  getStartingDateOfTheMonth(): Date {
-    return this.startingDateOfTheMonth as Date;
-  }
-
-  getEndingDateOfTheMonth(): Date {
-    return this.endingDateOfTheMonth as Date;
-  }
-
-  getStartingDateOfTheWeek(): Date {
-    return this.startingDateOfTheWeek as Date;
-  }
-
-  getEndingDateOfTheWeek(): Date {
-    return this.endingDateOfTheWeek as Date;
-  }
-
-  getCurentMonthStartingDate(): Date {
-    return this.curentMonthStartingDate as Date;
-  }
-
-  getCurrnetMonthEndingDate(): Date {
-    return this.currnetMonthEndingDate as Date;
   }
 }
